@@ -2,10 +2,22 @@
   "manifest_version": 3,
   "name": "Smart Reply Generator",
   "version": "1.0",
-  "description": "Generate smart email/chat replies with AI.",
+  "description": "Generate intelligent and context-aware email/chat replies using AI directly from your browser.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "permissions": ["clipboardWrite"],
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Smart Reply Generator"
   }
 }
+
 
