@@ -7,45 +7,64 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Smart Reply Generator</h1>
-    <form id="reply-form">
-      <label for="thread">Email / Message Thread</label>
-      <textarea id="thread" placeholder="Enter email or message thread..." required></textarea>
+  <div class="tab-buttons">
+    <button id="generate-tab-btn" class="active">🧠 Generate</button>
+    <button id="settings-tab-btn" >⚙️ Settings</button>
+  </div>
 
-      <label for="role">Your Role</label>
-      <select id="role" required>
-        <option value="Colleague">Colleague</option>
-        <option value="Manager">Manager</option>
-        <option value="Student">Student</option>
-        <option value="Employee">Employee</option>
-        <option value="Customer Support">Customer Support</option>
-      </select>
+  <!-- 🧠 GENERATE TAB -->
+  <div id="generate-tab" class="tab-content">
+    <div class="container">
+      <h1>Smart Reply Generator</h1>
+      <form id="reply-form">
+        <label for="thread">Email / Message Thread</label>
+        <textarea id="thread" placeholder="Enter email or message thread..." required></textarea>
 
-      <label for="tone">Tone</label>
-      <select id="tone" required>
-        <option value="Friendly">Friendly</option>
-        <option value="Formal">Formal</option>
-        <option value="Polite">Polite</option>
-        <option value="Assertive">Assertive</option>
-        <option value="Casual">Casual</option>
-      </select>
+        <label for="role">Your Role</label>
+        <select id="role" required>
+          <option value="Colleague">Colleague</option>
+          <option value="Manager">Manager</option>
+          <option value="Student">Student</option>
+          <option value="Employee">Employee</option>
+          <option value="Customer Support">Customer Support</option>
+        </select>
 
-      <label for="mode">Mode</label>
-      <select id="mode" required>
-        <option value="generate">Generate Reply</option>
-        <option value="analyze">Analyze Reply</option>
-        <option value="both">Generate & Analyze</option>
-      </select>
+        <label for="tone">Tone</label>
+        <select id="tone" required>
+          <option value="Friendly">Friendly</option>
+          <option value="Formal">Formal</option>
+          <option value="Polite">Polite</option>
+          <option value="Assertive">Assertive</option>
+          <option value="Casual">Casual</option>
+        </select>
 
-      <label for="new-message" id="new-message-label" class="hidden">New Message (for Analyze mode)</label>
-      <textarea id="new-message" placeholder="Enter student reply or new message..." class="hidden"></textarea>
+        <label for="mode">Mode</label>
+        <select id="mode" required>
+          <option value="generate">Generate Reply</option>
+          <option value="analyze">Analyze Reply</option>
+          <option value="both">Generate & Analyze</option>
+        </select>
 
-      <button type="submit" id="generate-btn">Generate Replies</button>
-    </form>
+        <label for="new-message" id="new-message-label" class="hidden">New Message (for Analyze mode)</label>
+        <textarea id="new-message" placeholder="Enter student reply or new message..." class="hidden"></textarea>
 
-    <div id="status" aria-live="polite"></div>
-    <div id="replies-container"></div>
+        <button type="submit" id="generate-btn">Generate Replies</button>
+      </form>
+
+      <div id="status" aria-live="polite"></div>
+      <div id="replies-container"></div>
+    </div>
+  </div>
+
+  <!-- ⚙️ SETTINGS TAB -->
+  <div id="settings-tab" class="tab-content hidden">
+    <div class="container">
+      <h2>🔑 API Key Settings</h2>
+      <label for="gemini-api-key">Gemini API Key:</label>
+      <input type="text" id="gemini-api-key" placeholder="Enter your Gemini API key" />
+      <button id="save-api-key">💾 Save</button>
+      <div id="api-status"></div>
+    </div>
   </div>
 
   <script src="popup.js"></script>

@@ -134,3 +134,28 @@ form.addEventListener("submit", async (e) => {
 });
 
 
+  const mainTabBtn = document.getElementById("generate-tab-btn");
+  const settingsTabBtn = document.getElementById("settings-tab-btn");
+  const mainTab = document.getElementById("generate-tab");
+  const settingsTab = document.getElementById("settings-tab");
+
+  if (mainTabBtn && settingsTabBtn && mainTab && settingsTab) {
+    function switchTab(to) {
+      if (to === "main") {
+        mainTab.classList.remove("hidden");
+        settingsTab.classList.add("hidden");
+        mainTabBtn.classList.add("active");
+        settingsTabBtn.classList.remove("active");
+      } else {
+        mainTab.classList.add("hidden");
+        settingsTab.classList.remove("hidden");
+        settingsTabBtn.classList.add("active");
+        mainTabBtn.classList.remove("active");
+      }
+    }
+
+    mainTabBtn.addEventListener("click", () => switchTab("main"));
+    settingsTabBtn.addEventListener("click", () => switchTab("settings"));
+  }
+
+

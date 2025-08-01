@@ -13,6 +13,34 @@ body {
   max-width: 480px;
 }
 
+.tab-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.tab-buttons button {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  background: #374151;
+  border: none;
+  color: #e0e7ff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-buttons button.active {
+  background: #4f46e5;
+  border-bottom: 2px solid #a5b4fc;
+}
+
+.tab-buttons button:hover {
+  background: #6366f1;
+}
+
+
 .container {
   display: flex;
   flex-direction: column;
@@ -159,3 +187,72 @@ textarea {
   max-height: 20rem; /* adjust max height so it doesn’t get too big */
   overflow-y: auto;
 }
+
+
+/* Container padding & layout */
+#settings-tab .container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Heading */
+#settings-tab h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #6366f1; /* indigo */
+
+}
+
+/* Label */
+#settings-tab label {
+  font-size: 0.95rem;
+  color: #6366f1; /* indigo */
+}
+
+/* Input styling */
+#settings-tab input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease-in-out;
+}
+
+#settings-tab input[type="text"]:focus {
+  outline: none;
+  border-color: #4f46e5; /* Indigo */
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Save button */
+#save-api-key {
+  padding: 8px 12px;
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#save-api-key:hover {
+  background-color: #4338ca; /* Darker indigo */
+}
+
+/* Status text */
+#api-status {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: #16a34a; /* Green by default (success) */
+}
+
+/* Error style (can be toggled via JS) */
+#api-status.error {
+  color: #dc2626; /* Red */
+}
+
