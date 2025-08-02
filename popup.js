@@ -159,3 +159,28 @@ form.addEventListener("submit", async (e) => {
   }
 
 
+const saveBtn = document.getElementById("save-api-key");
+const apiInput = document.getElementById("gemini-api-key");
+const apiStatus = document.getElementById("api-status");
+
+saveBtn.addEventListener("click", () => {
+  const key = apiInput.value.trim();
+
+  if (!key) {
+    apiStatus.textContent = "❌ Please enter a valid API key.";
+    apiStatus.classList.add("error");
+    return;
+  }
+
+  chrome.storage.local.set({ geminiApiKey: key }, () => {
+    apiStatus.textContent = "✅ API key saved!";
+    apiStatus.classList.remove("error");
+  });
+});
+
+chrome.storage.local.get("geminiApiKey", (result) => {
+    if (result.geminiApiKey) {
+      apiInput.value = result.geminiApiKey;
+    }
+  });
+
