@@ -62,6 +62,11 @@ autoResizeTextarea(newMessageInput);
 // Form submission
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  const geminiApiKey = await new Promise((resolve) => {
+    chrome.storage.local.get("geminiApiKey", (result) => {
+      resolve(result.geminiApiKey || "");
+    });
+  });
 
   repliesContainer.innerHTML = "";
   statusDiv.textContent = "Generating replies... ⏳";
@@ -72,12 +77,17 @@ form.addEventListener("submit", async (e) => {
     role: roleSelect.value,
     tone: toneSelect.value,
     mode: modeSelect.value,
+    api_key: geminiApiKey
   };
 
   if (modeSelect.value === "analyze" || modeSelect.value === "both") {
     payload.new_message = newMessageInput.value.trim();
   }
 
+  if (!geminiApiKey) {
+    statusDiv.textContent = "❌ Gemini API key is missing. Please set it in settings.";
+    return;
+  }
   try {
     const response = await fetch("https://threadwise-ai-backend.onrender.com/generate-replies", {
       method: "POST",
@@ -126,9 +136,13 @@ form.addEventListener("submit", async (e) => {
       .join("");
 
   } catch (error) {
-    console.error(error);
-    statusDiv.textContent = "❌ Failed to generate replies. Is the backend running?";
+  if (error instanceof TypeError && error.message.includes("Failed to fetch")) {
+    statusDiv.textContent = "❌ Invalid API Key || Turn on the Internet";
+  } else {
+    statusDiv.textContent = `❌ Unexpected error: ${error.message}`;
   }
+}
+
 
   generateBtn.disabled = false;
 });
@@ -166,8 +180,8 @@ const apiStatus = document.getElementById("api-status");
 saveBtn.addEventListener("click", () => {
   const key = apiInput.value.trim();
 
-  if (!key) {
-    apiStatus.textContent = "❌ Please enter a valid API key.";
+  if (!key || key.length < 15) {
+    apiStatus.textContent = "❌ Please enter a valid API key (min 15 characters) .";
     apiStatus.classList.add("error");
     return;
   }
@@ -183,4 +197,7 @@ chrome.storage.local.get("geminiApiKey", (result) => {
       apiInput.value = result.geminiApiKey;
     }
   });
+
+
+
 
