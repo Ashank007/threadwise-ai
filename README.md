@@ -72,6 +72,11 @@ threadwise-ai/
 
 - ✅ [Backend](https://github.com/Ashank007/threadwise-ai-backend)
 
+
+## Demo
+[![Watch the demo](https://img.youtube.com/vi/HCNJ8we0uG0/maxresdefault.jpg)](https://youtu.be/HCNJ8we0uG0)
+
+
 ## 🪪 License
 
 - This project is licensed under the MIT License.
